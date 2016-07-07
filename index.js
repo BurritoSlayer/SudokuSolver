@@ -40,7 +40,7 @@ function solveSudoku(inputNumbers){
     var colList = [col1, col2, col3, col4, col5, col6, col7, col8, col9]
     var nonetList = [nonet1, nonet2, nonet3, nonet4, nonet5, nonet6, nonet7, nonet8, nonet9]
     
-    var tryQueue= [] //holds a list of functions for the function to use
+    var tryQueue= [] //holds a list of functions
 
     //parses the input number list into an array
     parsedInputNumbers = (""+inputNumbers).split("");
@@ -60,84 +60,84 @@ function solveSudoku(inputNumbers){
         
         //generate rows
         if (i < 9) {
-            row1.push(currNum);
+            row1.push([i+1], currNum);
             divNum = i;
         } else if (i >= 9 & i < 18) {
-            row2.push(currNum);
+            row2.push([i+1], currNum);
             divNum = (i - 9);
         } else if (i >= 18 & i < 27) {
-            row3.push(currNum);
+            row3.push([i+1], currNum);
             divNum = (i - 18);
         } else if (i >= 27 & i < 36) {
-            row4.push(currNum);
+            row4.push([i+1], currNum);
             divNum = (i - 27);
         } else if (i >= 36 & i < 45) {
-            row5.push(currNum);
+            row5.push([i+1], currNum);
             divNum = (i - 36);
         } else if (i >= 45 & i < 54) {
-            row6.push(currNum);
+            row6.push([i+1], currNum);
             divNum = (i - 45);
         } else if (i >= 54 & i < 63) {
-            row7.push(currNum);
+            row7.push([i+1], currNum);
             divNum = (i - 54);
         } else if (i >= 63 & i < 72) {
-            row8.push(currNum);
+            row8.push([i+1], currNum);
             divNum = (i - 63);
         } else if (i >= 72 & i < 81) {
-            row9.push(currNum);
+            row9.push([i+1], currNum);
             divNum = (i - 72);
         }
         
         //generate columns
         if (divNum === 0) {
-            col1.push(currNum);
+            col1.push([i+1], currNum);
         } else if (divNum === 1) {
-            col2.push(currNum);
+            col2.push([i+1], currNum);
         } else if (divNum === 2) {
-            col3.push(currNum);
+            col3.push([i+1], currNum);
         } else if (divNum === 3) {
-            col4.push(currNum);
+            col4.push([i+1], currNum);
         } else if (divNum === 4) {
-            col5.push(currNum);
+            col5.push([i+1], currNum);
         } else if (divNum === 5) {
-            col6.push(currNum);
+            col6.push([i+1], currNum);
         } else if (divNum === 6) {
-            col7.push(currNum);
+            col7.push([i+1]currNum);
         } else if (divNum === 7) {
-            col8.push(currNum);
+            col8.push([i+1]currNum);
         } else if (divNum === 8) {
-            col9.push(currNum);
+            col9.push([i+1], currNum);
         }
         
         //generate nonets
         if (i < 27) {
             if (divNum < 3) {
-                nonet1.push(currNum);
+                nonet1.push([i+1], currNum);
             } else if (divNum >= 3 & divNum < 6) {
-                nonet2.push(currNum);
+                nonet2.push([i+1], currNum);
             } else {
-                nonet3.push(currNum);
+                nonet3.push([i+1], currNum);
             }
         } else if (i >= 27 & i < 54) {
             if (divNum < 3) {
-                nonet4.push(currNum);
+                nonet4.push([i+1], currNum);
             } else if (divNum >= 3 & divNum < 6) {
-                nonet5.push(currNum);
+                nonet5.push([i+1], currNum);
             } else {
-                nonet6.push(currNum);
+                nonet6.push([i+1], currNum);
             }
         } else if (i >= 54 & i < 81) {
             if (divNum < 3) {
-                nonet7.push(currNum);
+                nonet7.push([i+1], currNum);
             } else if (divNum >= 3 & divNum < 6) {
-                nonet8.push(currNum);
+                nonet8.push([i+1], currNum);
             } else {
-                nonet9.push(currNum);
+                nonet9.push([i+1], currNum);
             }
         }
         
         //populate solvingNumbersMap
-        solvingNumberMap.push([i+1, currNum]);
+        solvingNumberMap.push([i+1], currNum]);
     }
     
     /* removed until necessary. this function removes 0s in row, col, or nonet array. so [0, 1, 9, 0, 7, 0] -> [1, 9, 7]
@@ -152,16 +152,24 @@ function solveSudoku(inputNumbers){
     }
     */
     
+    function compareCrossRowsAndCols(inputNumber){
+        
+    }
+    
     //returns true if success, else returns false
     function crossHatching() {
-        function splitNonets() {
-        
+        //loop through nonets..
+        for (let nonet of nonetList) {
+            //loop through values in current nonet..
+            for (var i = 0; i < (nonet.length/2); i++) {
+                //since this is a two dimensional array, skip every other value
+                if (! (i % 2) === 0) {
+                    if (nonet[i] === 0) {
+                        compareCrossRowsAndCols(nonet[i-1]);
+                    }
+                }
+            }
         }
-        function
-        
-        for 
-        
-        
     }
     
     //returns true if success, else returns false
